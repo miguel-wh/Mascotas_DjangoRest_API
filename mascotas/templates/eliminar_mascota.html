@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<div class="col-9">
+        <h1>{{ titulo }} - {{ api_version }}</h1>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="alert alert-danger" role="alert">
+			  ¿Desea eliminar el registro de <strong>{{ mascota.nombre }}</strong>?
+			</div>
+
+			<button type="submit" class="btn btn-danger mr-2">Eliminar</button>
+			<a class="btn btn-secondary" href="{% url 'lista_mascotas' api_version=api_version %}">Cancelar</a>
+       </form>
+	</div>
+{% endblock %}
+
