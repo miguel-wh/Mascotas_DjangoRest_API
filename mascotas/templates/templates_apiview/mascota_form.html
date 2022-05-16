@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load i18n widget_tweaks %}
+
+{% block contenido %}
+    <h1> {{ titulo }} - {{ api_version }}</h1>
+	<div class="col-9">
+
+		<div class="col-md-8 col-md-offset-2">
+		</div>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label for="{{ form.nombre.name }}">{{ form.nombre.label }}</label>
+					{% render_field form.nombre class='form-control' placeholder=form.nombre.label %}
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label for="{{ form.sexo.name }}">{{ form.sexo.label }}</label>
+                    {% render_field form.sexo class='form-control' placeholder=form.sexo.label %}
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label for="{{ form.edad_aproximada.name }}">{{ form.edad_aproximada.label }}</label>
+                    {% render_field form.edad_aproximada class='form-control' placeholder=form.edad_aproximada.label %}
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label for="{{ form.fecha_rescate.name }}">{{ form.fecha_rescate.label }}</label>
+                    {% render_field form.fecha_rescate class='form-control' placeholder=form.fecha_rescate.label %}
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label for="{{ form.persona.name }}">{{ form.persona.label }}</label>
+                    {% render_field form.persona class='form-control' %}
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label for="{{ form.vacuna.name }}">{{ form.vacuna.label }}</label>
+                    {% render_field form.vacuna class='form-control' %}
+				</div>
+			</div>
+            <br>
+			<div class="col-md col-md-offset-2">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+                    <a href="{% url 'lista_mascotas' api_version=api_version %}" class="btn btn-secondary">Cancelar</a>
+				</div>
+			</div>
+
+       </form>
+	</div>
+{% endblock %}
+

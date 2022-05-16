@@ -12,6 +12,7 @@ from mascotas.api_views.mascota_viewset import MascotaViewSet, MascotaViewSetPK,
 # Views
 from mascotas.views import lista_mascotas, crear_mascota, editar_mascota, eliminar_mascota, ver_adoptante
 
+from mascotas.views_instance import views_decorator, views_api_view, views_genericsviews, views_viewsets
 
 urlpatterns = [
 
@@ -52,4 +53,34 @@ urlpatterns = [
     path('eliminar/<str:api_version>/<int:id>', eliminar_mascota, name="eliminar_mascota"),
 
     path('<str:api_version>/adoptante/<int:id_mascota>/persona/', ver_adoptante, name="ver_adoptante"),
+
+    # =========== VIEWS Para consumir endpoints con Instancias ===========
+    # ####Decorador instance view
+
+    path('views-decorador/<str:api_version>/', views_decorator.lista_mascotas, name="lista_mascotas_views_decorador"),
+    path('views-decorador/crear/<str:api_version>/', views_decorator.crear_mascota, name="crear_mascotas_views_decorador"),
+    path('views-decorador/editar/<str:api_version>/<int:id>/', views_decorator.editar_mascota, name="editar_mascotas_views_decorador"),
+    path('views-decorador/eliminar/<str:api_version>/<int:id>', views_decorator.eliminar_mascota, name="eliminar_mascotas_views_decorador"),
+
+    # ####APIVIews instance view
+
+    path('views-apiview/<str:api_version>/', views_api_view.lista_mascotas, name="lista_mascotas_views_apiview"),
+    path('views-apiview/crear/<str:api_version>/', views_api_view.crear_mascota, name="crear_mascotas_views_apiview"),
+    path('views-apiview/editar/<str:api_version>/<int:id>/', views_api_view.editar_mascota, name="editar_mascotas_views_apiview"),
+    path('views-apiview/eliminar/<str:api_version>/<int:id>', views_api_view.eliminar_mascota, name="eliminar_mascotas_views_apiview"),
+
+    # ####Generics instance view
+
+    path('views-generics/<str:api_version>/', views_genericsviews.lista_mascotas, name="lista_mascotas_views_genericsviews"),
+    path('views-generics/crear/<str:api_version>/', views_genericsviews.crear_mascota, name="crear_mascotas_views_genericsviews"),
+    path('views-generics/editar/<str:api_version>/<int:id>/', views_genericsviews.editar_mascota, name="editar_mascotas_views_genericsviews"),
+    path('views-generics/eliminar/<str:api_version>/<int:id>', views_genericsviews.eliminar_mascota, name="eliminar_mascotas_views_genericsviews"),
+
+    # ####Generics instance view
+
+    path('views-viewsets/<str:api_version>/', views_viewsets.lista_mascotas, name="lista_mascotas_views_viewsets"),
+    path('views-viewsets/crear/<str:api_version>/', views_viewsets.crear_mascota, name="crear_mascotas_views_viewsets"),
+    path('views-viewsets/editar/<str:api_version>/<int:id>/', views_viewsets.editar_mascota, name="editar_mascotas_views_viewsets"),
+    path('views-viewsets/eliminar/<str:api_version>/<int:id>', views_viewsets.eliminar_mascota, name="eliminar_mascotas_views_viewsets"),
+
 ]

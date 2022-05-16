@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <div class="col">
+	<div class="mb-2">
+	<h1 class="text-center">
+        CRUD MASCOTAS - {{ api_version }}
+        <br>
+        {{ titulo2 }}
+    </h1>
+	<a class="btn btn-success" href="{% url 'crear_mascotas_views_genericsviews' api_version=api_version %} ">Añadir</a>
+	</div>
+	<table class="table">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th scope="col">#ID</th>
+	      <th scope="col">Nombre</th>
+	      <th scope="col">Sexo</th>
+	      <th scope="col">Edad aproximada</th>
+	      <th scope="col">Fecha rescate</th>
+          <th scope="col">Vacuna</th>
+	      <th scope="col">Adoptante</th>
+	      <th scope="col">Acciones</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% if mascotas %}
+	  	{% for mascota in mascotas %}
+	    <tr>
+	      <th scope="row">{{ mascota.id }}</th>
+	      <td>{{ mascota.nombre }}</td>
+	      <td>{{ mascota.sexo }}</td>
+	      <td>{{ mascota.edad_aproximada }}</td>
+	      <td>{{ mascota.fecha_rescate }}</td>
+          <td>
+              {% for vacuna in mascota.vacuna %}
+                  {{ vacuna.nombre }}
+              {% endfor %}
+          </td>
+	      <td>{{ mascota.persona.nombre }}</td>
+
+	      <td>
+            <a class="btn btn-secondary mr-2" href="{% url 'ver_adoptante' api_version=api_version id_mascota=mascota.id %}">Ver adoptante</a>
+	      	<a class="btn btn-primary mr-2" href="{% url 'editar_mascotas_views_genericsviews' api_version=api_version id=mascota.id %}">Editar Mascota</a>
+	      	<a class="btn btn-danger" href="{% url 'eliminar_mascotas_views_genericsviews' api_version=api_version id=mascota.id %}">Elimina Mascota</a>
+	      </td>
+	    </tr>
+	    {% endfor %}
+	    {% else %}
+	    <h1>No hay registros</h1>
+
+	    {% endif %}
+	  </tbody>
+	</table>
+
+</div>
+{% endblock %}

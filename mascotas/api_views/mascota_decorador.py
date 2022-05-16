@@ -8,6 +8,10 @@ from django.http import Http404
 
 @api_view(['GET', 'POST'])
 def mascotas_api_v1(request):
+    """
+        Lista de mascota
+        Crear mascota
+    """
     if request.method == 'GET':
         mascotas = Mascota.objects.all()
         mascota_json = MascotaSerializer(mascotas, many=True)
@@ -31,8 +35,9 @@ def get_object(id):
 @api_view(['GET', 'PUT', 'DELETE'])
 def mascotas_api_v1_pk(request, id):
     """
-    Lista de mascota
-    Crear mascota
+    Detail de mascota
+    Editar mascota
+    ELiminar mascota
     """
     if request.method == 'GET':
         mascota = get_object(id)
