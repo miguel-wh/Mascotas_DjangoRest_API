@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from mascotas.forms import MascotaForm
 from rest_framework import status
-from mascotas.api_views.mascota_generic_view import MascotaGenericView, MascotaGenericViewPk
+from mascotas.api_views.mascota_generic_view import MascotaGenericView, MascotaGenericViewPk, PersonaMascotaApiV3
 
 
 def lista_mascotas(request, api_version):
@@ -66,3 +66,15 @@ def eliminar_mascota(request, api_version, id):
     return render(request, 'templates_generics/eliminar_mascota.html',
                   {'mascota': mascota_data, 'api_version': api_version, "titulo": titulo})
 
+
+def ver_adoptante(request, api_version, id_mascota):
+    adoptente = PersonaMascotaApiV3.as_view()(request, pk=id_mascota).data
+    adoptente_data = adoptente if 'id' in json.dumps(adoptente) else {}
+    if type(adoptente_data) == list:
+        adoptente_data = adoptente_data[0]
+
+    return render(request, 'templates_generics/ver_adoptante.html', {
+        'api_version': api_version,
+        'id_mascota': id_mascota,
+        'adoptente_data': adoptente_data,
+    })
