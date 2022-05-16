@@ -40,7 +40,7 @@
 	      <td>{{ mascota.persona.nombre }}</td>
 
 	      <td>
-            <a class="btn btn-secondary mr-2" href="{% url 'ver_adoptante' api_version=api_version id_mascota=mascota.id %}">Ver adoptante</a>
+            <a class="btn btn-secondary mr-2" href="{% url 'ver_adoptante_views_viewsets' api_version=api_version id_mascota=mascota.id %}">Ver adoptante</a>
 	      	<a class="btn btn-primary mr-2" href="{% url 'editar_mascotas_views_viewsets' api_version=api_version id=mascota.id %}">Editar Mascota</a>
 	      	<a class="btn btn-danger" href="{% url 'eliminar_mascotas_views_viewsets' api_version=api_version id=mascota.id %}">Elimina Mascota</a>
 	      </td>
