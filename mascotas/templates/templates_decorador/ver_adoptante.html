@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <h1>Datos del adoptante - {{ api_version }}</h1>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Nombre: </strong> {{ adoptente_data.nombre }}</li>
+      <li class="list-group-item"><strong>Apellidos: </strong> {{ adoptente_data.apellidos }} </li>
+      <li class="list-group-item"><strong>Edad: </strong> {{ adoptente_data.edad }}</li>
+      <li class="list-group-item"><strong>Telefono: </strong> {{ adoptente_data.telefono }}</li>
+      <li class="list-group-item"><strong>Email: </strong> {{ adoptente_data.email }}</li>
+      <li class="list-group-item"><strong>Domicilio: </strong> {{ adoptente_data.domicilio }}</li>
+    </ul>
+{% endblock %}
+
